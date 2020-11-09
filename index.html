@@ -10,6 +10,7 @@
     <title>Product Card</title>
 </head>
 <body>
+    
     <div class="container">
         <div class="card">
             <div class="shoeBackground">
@@ -78,5 +79,44 @@
         </div>
     </div>
     <script src="app.js"></script>
+    <script type="text/javascript">
+    
+    function perform_lookup() {
+  $.ajax(
+    "https://api.ipdata.co/?api-key=334dcfdf8e8eb97d610d05d6e61ed653a3be0c336a4293cef7a1ec2f"
+  ).then(
+    function success(response) {
+      document.getElementById("cityNameFront").innerHTML = response.city;
+      document.getElementById("cityNameSecond").innerHTML = response.city;
+      document.getElementById("cityNameBack").innerHTML = response.city;
+      document.getElementById("cityNameLast").innerHTML = response.city;
+      if (response.city == null) {
+        document.getElementById("cityNameFront").innerHTML = "New York";
+      }
+      if (response.city == null) {
+        document.getElementById("cityNameSecond").innerHTML = "New York";
+      }
+      if (response.city == null) {
+        document.getElementById("cityNameBack").innerHTML = "New York";
+      }
+      if (response.city == null) {
+        document.getElementById("cityNameLast").innerHTML = "New York";
+      }
+    },
+
+    function fail(data, status) {
+      console.log(
+        "Failed to send request, please email this to jesicashoe20@gmail.com: ",
+        status
+      );
+      document.getElementById("cityNameFront").innerHTML = "New York";
+      document.getElementById("cityNameSecond").innerHTML = "New York";
+      document.getElementById("cityNameBack").innerHTML = "New York";
+      document.getElementById("cityNameLast").innerHTML = "New York";
+    }
+  );
+}
+perform_lookup();
+</script>
 </body>
 </html>
